@@ -1,5 +1,5 @@
 class Nodos:
-    def _init_(self, valor):
+    def __init__(self, valor):
         self.valor = valor
         self.hijos = []
         self.padre = None
@@ -9,7 +9,7 @@ class Nodos:
         self.hijos.append(hijo)
 
 class Arboles:
-    def _init_(self):
+    def __init__(self):
         self.nodos = {}
         self.raiz = None
 
@@ -42,7 +42,7 @@ class Arboles:
             self.mostrarArbol(hijo, nivel + 1)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     arbol = Arboles()
 
     while True:
