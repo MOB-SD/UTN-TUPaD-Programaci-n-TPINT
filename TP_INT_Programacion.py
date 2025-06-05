@@ -1,89 +1,79 @@
-# Clase que representa un nodo en el árbol
-class Nodos:
-    def __init__(self, valor):
-        self.valor = valor  # Valor que contiene el nodo
-        self.hijos = []     # Lista de nodos hijos
-        self.padre = None   # Referencia al nodo padre (inicialmente None)
+# Función para crear un nodo nuevo con valor, lista de hijos y referencia al padre
+def crearNodo(valores):
+    return {
+        "valor": valores,
+        "hijos": [],
+        "padre": None
+    }
 
-    # Método para agregar un hijo al nodo actual
-    def agregarHijo(self, hijo):
-        hijo.padre = self          # Se establece el nodo actual como padre del hijo
-        self.hijos.append(hijo)    # Se agrega el hijo a la lista de hijos
+# Función para agregar un nodo al árbol
+def agregar_nodo(arbol, valores, padre=None):
+    # Verifica si el nodo ya existe
+    if valores in arbol["nodos"]:
+        print(f"El nodo '{valores}' ya existe.")
+        return
 
-# Clase que representa el árbol completo
-class Arboles:
-    def __init__(self):
-        self.nodos = {}    # Diccionario para almacenar los nodos por su valor
-        self.raiz = None   # Referencia al nodo raíz del árbol
+    # Crea el nuevo nodo y lo guarda en el diccionario de nodos
+    nuevoNodo = crearNodo(valores)
+    arbol["nodos"][valores] = nuevoNodo
 
-    # Método para agregar un nodo al árbol
-    def agregarNodo(self, valor, padre=None):
-        if valor in self.nodos:
-            # Si el nodo ya existe, no se agrega de nuevo
-            print(f"El nodo '{valor}' ya existe.")
-            return
-
-        nuevoNodo = Nodos(valor)      # Se crea un nuevo nodo con el valor dado
-        self.nodos[valor] = nuevoNodo # Se agrega al diccionario de nodos
-
-        if padre:
-            if padre in self.nodos:
-                # Si se especifica un padre y existe, se agrega como hijo de ese padre
-                self.nodos[padre].agregarHijo(nuevoNodo)
-                print(f"El nodo '{valor}' fue añadido como hijo de '{padre}'.")
-            else:
-                # Si el padre no existe, se muestra un mensaje de error
-                print(f"El nodo padre no existe '{padre}'.")
+    # Si se especificó un padre
+    if padre:
+        # Verifica si el nodo padre existe
+        if padre in arbol["nodos"]:
+            nodoPadre = arbol["nodos"][padre]
+            nuevoNodo["padre"] = nodoPadre  # Asigna el padre
+            nodoPadre["hijos"].append(nuevoNodo)  # Agrega como hijo del padre
+            print(f"El nodo '{valores}' fue añadido y sera hijo de '{padre}'.")
         else:
-            if self.raiz:
-                # Si ya hay una raíz y se intenta agregar otra, se muestra un mensaje
-                print(f"Ya existe una raíz: '{self.raiz.valor}'.")
-            else:
-                # Si no hay raíz, este nodo se convierte en la raíz del árbol
-                self.raiz = nuevoNodo
-                print(f"La raíz '{valor}' fue creada.")
-
-    # Método para mostrar el árbol recursivamente desde un nodo dado
-    def mostrarArbol(self, nodo=None, nivel=0):
-        if nodo is None:
-            nodo = self.raiz  # Si no se especifica un nodo, se usa la raíz
-        print("  " * nivel + nodo.valor)  # Imprime el nodo con sangría según el nivel
-        for hijo in nodo.hijos:
-            self.mostrarArbol(hijo, nivel + 1)  # Llamada recursiva para mostrar los hijos
-
-# Bloque principal que se ejecuta si este archivo es el programa principal
-if __name__ == "__main__":
-    arbol = Arboles()  # Se crea una instancia del árbol
-
-    # Bucle principal del menú
-    while True:
-        print("\n--- Menú ---")
-        print("1. Agregar nodo")
-        print("2. Mostrar árbol")
-        print("3. Salir")
-
-        opcion = input("Elegí una opción: ")
-
-        if opcion == "1":
-            # Solicita el nombre del nuevo nodo y el nombre del padre
-            nombre = input("Nombre del nodo: ")
-            padre = input("Nombre del nodo padre: ")
-            padre = padre.strip() if padre.strip() != "" else None  # Convierte texto vacío en None
-            arbol.agregarNodo(nombre, padre)  # Agrega el nodo al árbol
-
-        elif opcion == "2":
-            # Muestra el árbol si existe una raíz
-            if arbol.raiz:
-                print("\nÁrbol actual:")
-                arbol.mostrarArbol()
-            else:
-                print("No existe esa raiz.")
-
-        elif opcion == "3":
-            # Finaliza el programa
-            print("Hasta la proxima.")
-            break
-
+            print(f"El nodo padre no existe '{padre}', vuelve a intentarlo con un nodo existente.")
+    else:
+        # Si no se especifica padre, se intenta agregar como raíz
+        if arbol["raiz"]:
+            print(f"Ya existe una raíz: '{arbol['raiz']['valor']}'.")
         else:
-            # Opción inválida del menú
-            print("Opción inválida.")
+            arbol["raiz"] = nuevoNodo  # Asigna como raíz
+            print(f"La raíz '{valores}' fue creada.")
+
+# Función para mostrar el árbol de forma recursiva e indentada
+def mostrar_arbol(nodo, nivel=0):
+    print("  " * nivel + nodo["valor"])  # Muestra el nodo con indentación
+    for hijo in nodo["hijos"]:
+        mostrar_arbol(hijo, nivel + 1)  # Llama recursivamente a los hijos
+
+# Estructura del árbol: contiene todos los nodos y una referencia a la raíz
+arbol = {
+    "nodos": {},
+    "raiz": None
+}
+
+while True:
+    print("--- Menú ---")
+    print("1. Agregar nodo al arbol")
+    print("2. Mostrar árbol")
+    print("3. Salir")
+
+    opcion = input("Elegí una opción de 1 a 3: ")
+
+    if opcion == "1":
+        nombre = input("Nombre del nodo: ")
+        padre = input("Nombre del nodo padre: ")
+        padre = padre if padre != "" else None
+        agregar_nodo(arbol, nombre, padre)
+
+    elif opcion == "2":
+        # Muestra el árbol si existe una raíz
+        if arbol["raiz"]:
+            print("El arbol actualmente esta compuesto por:")
+            mostrar_arbol(arbol["raiz"])
+        else:
+            print("Esa raiz no existe.")
+
+    elif opcion == "3":
+        # Programa finalizado
+        print("Hasta la próxima.")
+        break
+
+    else:
+        #  opción inválida
+        print("Ingrese un numero que este dentro de (1-3).")
