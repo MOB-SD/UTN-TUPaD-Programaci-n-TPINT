@@ -9,7 +9,7 @@ El objetivo es aplicar conocimientos sobre el uso de Git, GitHub, y automatizaci
 # 🧾 Contenidos del Proyecto
 El proyecto contiene:
 
-Código fuente en Python para gestión de listas.
+Código fuente en Python para la implementacion de Arboles.
 Uso de buenas prácticas de control de versiones con Git.
 # 💻 Requisitos
 Python 3.x instalado
