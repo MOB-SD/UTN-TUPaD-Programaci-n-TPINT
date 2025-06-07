@@ -15,7 +15,10 @@ Uso de buenas prácticas de control de versiones con Git.
 Python 3.x instalado
 Git instalado y configurado
 # Acceso a GitHub:
+
 Video de youtube: https://youtu.be/8qh8hRjtVNs
+
 Canva: https://www.canva.com/design/DAGpTUVwTzE/VSYglMH0ynyntWfqD7Kqig/edit?utm_content=DAGpTUVwTzE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 🚀 Instrucciones para ejecutar
 Clonar este repositorio:
