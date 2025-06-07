@@ -16,8 +16,8 @@ Python 3.x instalado
 Git instalado y configurado
 # Accesos URL:
 
-Video de youtube: https://youtu.be/8qh8hRjtVNs
-
 Canva: https://www.canva.com/design/DAGpTUVwTzE/VSYglMH0ynyntWfqD7Kqig/edit?utm_content=DAGpTUVwTzE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 🚀 Instrucciones para ejecutar
+
+Video de youtube: https://youtu.be/8qh8hRjtVNs
