@@ -14,7 +14,7 @@ Uso de buenas prácticas de control de versiones con Git.
 # 💻 Requisitos
 Python 3.x instalado
 Git instalado y configurado
-# Acceso a GitHub:
+# Accesos URL:
 
 Video de youtube: https://youtu.be/8qh8hRjtVNs
 
