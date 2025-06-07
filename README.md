@@ -2,6 +2,10 @@
 🛠️ Trabajo Práctico Integrador - Programación
 UTN - Tecnicatura Universitaria en Programación
 
+# Alumnos
+Justo Bellingi
+Bejarano Matias
+
 # 📌 Descripción
 Este proyecto corresponde al Trabajo Práctico Integrador de la materia Programación I.
 El objetivo es aplicar conocimientos sobre el uso de Git, GitHub, y automatización de tareas en sistemas operativos.
